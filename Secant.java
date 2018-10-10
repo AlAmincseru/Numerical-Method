@@ -23,9 +23,39 @@ public class Secant {
 	            System.out.println("Root of the"+" given equation=" + x0);
 	        }
 	        else System.out.print("Can not find a"+" root in the given inteval"); 
-	    } 
-	    public static void main(String[] args) { 
-	        double x1 = 0, x2 = 1, E = 0.0001; 
-	        secant(x1, x2, E); 
 	    }
+	    public static void main(String[] args) { 
+	    	double a=0;
+	    	double b=0;
+	        double E = 0.0001;
+	        boolean limit = true;
+	        while(limit){
+				 if(getNumber(a,b))break;
+				 else if(getNumber(-a,b)){
+					 a = -a;
+					 break; 
+				 }
+				 else if(getNumber(a,-b)){
+					 b = -b;
+					 break;	 
+				 }
+				 else if(getNumber(-a,-b)){
+					 a = -a;
+					 b = -b;
+					 break;	 
+				 }
+				 else{
+					 a = a + 1;
+					 b = b + 1; 
+				 }
+			}
+	        
+	        secant(a, b, E);
+	    }
+	    public static boolean getNumber(double num1,double num2){
+			double value1 = num1 * num1 * num1 - num1 - 1;
+			double value2 = num2 * num2 * num2 - num2 -1 ;
+			if(value1 * value2 < 0)return true;
+			return false;
+		}
 }
